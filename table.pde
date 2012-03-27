@@ -6,6 +6,7 @@ public class myTable
   public int standColX, standColY, standColZ; //color of stand
   public int tableTopX, tableTopY, tableTopZ; //color of table top
   mychair chair = new mychair();
+  myCards card = new myCards(2,4);
   public myTable(int scX, int scY, int scZ, int ttX, int ttY, int ttZ)
   {
     standColX = scX;
@@ -28,6 +29,14 @@ public class myTable
     translate(2,-15,0);
     fill(tableTopX, tableTopY, tableTopZ);
     tableTop.createLong();
+    popMatrix();
+    
+    pushMatrix();
+    translate(2,-3.1,0);
+    rotateX(PI/2);  
+    scale(0.03,0.03, 0.03);
+      
+    card.createCard();
     popMatrix();
     
     pushMatrix();
