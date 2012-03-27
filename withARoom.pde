@@ -1,3 +1,5 @@
+//main class
+
 boolean isSmooth = true;
 boolean isWireFrame = false;
 boolean isRunning = true;
