@@ -8,6 +8,7 @@ myCube room = new myCube(2);
 myTable table1 = new myTable(252, 141, 89, 145, 191, 219);
 myTable table2 = new myTable(252, 141, 89, 145, 191, 219);
 myTable table3 = new myTable(252, 141, 89, 145, 191, 219);
+myRobot rob = new myRobot(2,-5,0,1);
 float xcamera;
 float ycamera;
 float zcamera;
@@ -73,6 +74,8 @@ void draw ()
   translate(370, 276.9, 0);
   scale(3);
   table1.create();
+  rob.create();
+  
   popMatrix();  
 
   //center table number 2

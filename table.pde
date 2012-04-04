@@ -28,7 +28,7 @@ public class myTable
     scale(1.3,.2,8);
     translate(2,-15,0);
     fill(tableTopX, tableTopY, tableTopZ);
-    tableTop.createLong();
+          tableTop.createTextured();
     popMatrix();
     
     pushMatrix();
