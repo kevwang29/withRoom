@@ -38,14 +38,14 @@ public class myCube
     };
     final PVector[] myVertices = {
 
-      new PVector(-myScaleVar, 1, -1), 
-      new PVector( 1, 1, -1), 
-      new PVector(-myScaleVar, 1, 1), 
+      new PVector(0, 1, 0), 
+      new PVector( 1, 1, 0), 
+      new PVector(0, 1, 1), 
       new PVector( 1, 1, 1), 
-      new PVector(-myScaleVar, -1, -1), 
-      new PVector( 1, -1, -1), 
-      new PVector( 1, -1, 1), 
-      new PVector(-myScaleVar, -1, 1)
+      new PVector(0, 0, 0), 
+      new PVector( 1, 0, 0), 
+      new PVector( 1, 0, 1), 
+      new PVector(0, 0, 1)
       };
       beginShape(QUADS);
     for (int f = 0; f < myFaces.length; f++)

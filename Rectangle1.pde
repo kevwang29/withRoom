@@ -1,7 +1,7 @@
 
-public class Rectangle
+public class Rectangle1
 {
-  int myLength, myWidth, myHeight;
+  float myLength, myWidth, myHeight;
   String[] texturePicture = new String[6];
   int[] textureOrientation = new int[] { 
     -1, -1, -1, -1, -1, -1
@@ -9,12 +9,11 @@ public class Rectangle
   PVector myLocation;
   final PVector[] myVertices;
   int[][] myFaces;
-  PVector translateAmount = new PVector(0, 0, 0);
-  PVector rotationAmount = new PVector(0, 0, 0);
+  boolean debug = false;
 
 
 
-  public Rectangle(int rectLength, int rectWidth, int rectHeight, PVector location)
+  public Rectangle1(float rectLength, float rectWidth, float rectHeight, PVector location)
   {
     myLength = rectLength;
     myWidth = rectWidth;
@@ -61,15 +60,16 @@ public class Rectangle
       
       myFaces = faces;
       myVertices = vertices;
+      scale();
     }
 
-    public Rectangle(int rectLength, int rectWidth, int rectHeight) {
+    public Rectangle1(float rectLength, float rectWidth, float rectHeight) {
       this(rectLength, rectWidth, rectHeight, new PVector(0, 0, 0));
     } 
 
   public void toDraw()
   {  
-    println("start toDraw");
+    if(debug) println("start toDraw");
   
     
     for (int f = 0; f < myFaces.length; f++) {
@@ -77,8 +77,6 @@ public class Rectangle
 
       if (texturePicture[f]!= null)
       {
-        print("process face ");
-        println(f);
         int[] myTemp = myFaces[f];
         int[] textureX = new int[] {
           0, 0, 1, 1
@@ -89,33 +87,16 @@ public class Rectangle
         
         
         PImage myTexture = loadImage(texturePicture[f]);
-        println(texturePicture[f]);
         textureMode(NORMALIZED);
         texture(myTexture);
         for (int i=0; i<4; i++) {
           vertex(myVertices[myTemp[i]].x, myVertices[myTemp[i]].y, myVertices[myTemp[i]].z, textureX[(i+textureOrientation[f])%4], textureY[(i+textureOrientation[f])%4]);
-          print(textureX[(i+textureOrientation[f])%4]);
-          println(textureY[(i+textureOrientation[f])%4]);
-          println(myVertices[myTemp[i]].x);
-          println(myVertices[myTemp[i]].y);
-          println(myVertices[myTemp[i]].z);
           
         }
-        
-        println("should color");
-        for( int i : myFaces[f]){
-           println( myVertices[i].x);
-           println( myVertices[i].y);
-           println( myVertices[i].z);
-        }
-        
       }
 
       else
       {
-        print("process face ");
-        println(f);
-        
         for (int i : myFaces[f])
         {
           vertex(myVertices[i].x, myVertices[i].y, myVertices[i].z);
@@ -131,9 +112,18 @@ public class Rectangle
     texturePicture[face] = fileName;
     textureOrientation[face] = rotation;
   }
+
   public void removeTexture( int face) {
     texturePicture[face] = null;
     textureOrientation[face] = -1;
+  }
+  
+  private void scale(){
+     for(int i=0; i< myVertices.length; i++){
+       myVertices[i].x= myVertices[i].x*myLength;
+       myVertices[i].y= myVertices[i].y*myWidth;
+       myVertices[i].z= myVertices[i].z*myHeight;
+     }
   }
 }
 
