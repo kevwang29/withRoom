@@ -28,7 +28,7 @@ public class myTable
     scale(1.3,.2,8);
     translate(2,-15,0);
     fill(tableTopX, tableTopY, tableTopZ);
-          tableTop.createTextured();
+    tableTop.createTextured();
     popMatrix();
     
     pushMatrix();
@@ -36,7 +36,7 @@ public class myTable
     rotateX(PI/2);  
     scale(0.03,0.03, 0.03);
       
-    card.createCard();
+    //card.createCard();
     popMatrix();
     
     pushMatrix();

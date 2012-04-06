@@ -1,5 +1,5 @@
 public class Card {
-  Rectangle1 myCard = new Rectangle1(6.35,0.2,9.0);
+  Rectangle1 myCard = new Rectangle1(3.15,0.1,4.5);
   boolean beingDealt = false;
   boolean flipped = false;
   float timeLastUpdated = 0;
@@ -57,12 +57,7 @@ public class Card {
     }
     float timeElapsed = t - timeLastUpdated;
     
-    if( myLocation.y>myTableHeight) {
-      if(debug) println("hitdeck");
-      hitDeck = true;
-      mySpeed = new PVector(mySpeed.x, 0 , mySpeed.z);
-      myLocation = new PVector(myLocation.x, myTableHeight, myLocation.z);
-    }
+    
     
     PVector horizontalSpeed = new PVector( mySpeed.x, 0, mySpeed.z);
     PVector verticalSpeed = new PVector( 0, mySpeed.y, 0);
@@ -91,6 +86,13 @@ public class Card {
       print("time elapsed");
       println(timeElapsed);
       println();
+    }
+    
+    if( myLocation.y>myTableHeight) {
+      if(debug) println("hitdeck");
+      hitDeck = true;
+      mySpeed = new PVector(mySpeed.x, 0 , mySpeed.z);
+      myLocation = new PVector(myLocation.x, myTableHeight, myLocation.z);
     }
 
     

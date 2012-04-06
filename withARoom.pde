@@ -34,15 +34,30 @@ AudioPlayer song;
 
 void setup ()
 {
-  myCard = new Card(new PVector(0, 40, 0));
+  myCard = new Card(new PVector(0, -25, 0));
   minim = new Minim(this);
-  size(1000, 1000, GLConstants.GLGRAPHICS);  
-  xcamera = 85;
-  ycamera = 185;
-  zcamera = 61;
-  xcenter = 430;
-  ycenter = 410;
-  zcenter = -30;
+  size(1000, 1000, P3D);  
+//  xcamera = 225;
+//  ycamera = 185;
+//  zcamera = 61;
+//  xcenter = 710;
+//  ycenter = 410;
+//  zcenter = -30;
+
+
+  xcamera = 305;
+  ycamera = 240;
+  zcamera = 26;
+  xcenter = 870;
+  ycenter = 520;
+  zcenter = -100;
+
+//  xcamera = 120;
+//  ycamera = 230;
+//  zcamera = 36;
+//  xcenter = 490;
+//  ycenter = 500;
+//  zcenter = -80;
   song = minim.loadFile("crowdTalking.wav", 2048);
   // song.loop();
 }
@@ -72,6 +87,8 @@ void draw ()
 
   // center scene
   pushMatrix();
+//  translate(width/2, height/2, 0);
+//  scale(100);
   translate(500, 100, 0);
   scale(200);
   //room.draw(isSmooth);
@@ -81,7 +98,6 @@ void draw ()
   //center table number 1
   pushMatrix();
   translate(370, 279.9, 0);
-  rotateX(PI);
   myCard.toDraw(millis());
   popMatrix();
   pushMatrix();
@@ -102,7 +118,7 @@ void draw ()
   
   pushMatrix();
   translate(0,0,20);
-  
+//  
   walker.create();
   walker.animateWalker();
   popMatrix();
@@ -134,7 +150,7 @@ void keyPressed ()
     isRunning = ! isRunning;
     break;
   case '1':
-     myCard.toDealCard(millis(), 15.0, new PVector(40,0,0));
+     myCard.toDealCard(millis(), -13.2, new PVector(-7,0,0));
   }
   if (key == CODED)
   {
