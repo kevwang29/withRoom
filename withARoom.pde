@@ -9,6 +9,9 @@ myTable table1 = new myTable(252, 141, 89, 145, 191, 219);
 myTable table2 = new myTable(252, 141, 89, 145, 191, 219);
 myTable table3 = new myTable(252, 141, 89, 145, 191, 219);
 myRobot rob = new myRobot(2,-5,0,1);
+myRobot walker = new myRobot(2,-6, 0, 1);
+myRobot walker2 = new myRobot(2,-6,0,1);
+Card myCard;
 float xcamera;
 float ycamera;
 float zcamera;
@@ -20,6 +23,10 @@ import ddf.minim.*;
 import ddf.minim.signals.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
+import processing.opengl.*;
+import codeanticode.glgraphics.*;
+
+
 Minim minim; 
 AudioPlayer song;
 
@@ -27,14 +34,15 @@ AudioPlayer song;
 
 void setup ()
 {
+  myCard = new Card(new PVector(0, 40, 0));
   minim = new Minim(this);
-  size(640, 360, P3D);  
-  xcamera = 120;
-  ycamera = 230;
-  zcamera = 76;
-  xcenter = width/2;
-  ycenter = height/2;
-  zcenter = 0;
+  size(1000, 1000, GLConstants.GLGRAPHICS);  
+  xcamera = 85;
+  ycamera = 185;
+  zcamera = 61;
+  xcenter = 430;
+  ycenter = 410;
+  zcenter = -30;
   song = minim.loadFile("crowdTalking.wav", 2048);
   // song.loop();
 }
@@ -42,7 +50,8 @@ void setup ()
 
 void draw ()
 {
-  // clear background for redraw
+  
+   // clear background for redraw
   smooth();
   background(0, 0, 0);
   // basic lighting setup
@@ -63,26 +72,41 @@ void draw ()
 
   // center scene
   pushMatrix();
-  translate(width/2, height/2, 0);
-  scale(100);
+  translate(500, 100, 0);
+  scale(200);
   //room.draw(isSmooth);
   room.createLong();
   popMatrix(); 
 
   //center table number 1
   pushMatrix();
+  translate(370, 279.9, 0);
+  rotateX(PI);
+  myCard.toDraw(millis());
+  popMatrix();
+  pushMatrix();
   translate(370, 276.9, 0);
   scale(3);
   table1.create();
-  rob.create();
-  
-  popMatrix();  
+  //rob.create();
+  //rob.deal();
 
+  popMatrix();  
+  
+  
   //center table number 2
   pushMatrix();
   translate(280, 276.9, 0);
   scale(3);
   table2.create();
+  
+  pushMatrix();
+  translate(0,0,20);
+  
+  walker.create();
+  walker.animateWalker();
+  popMatrix();
+  
   popMatrix();   
 
 
@@ -109,6 +133,8 @@ void keyPressed ()
   case ' ':
     isRunning = ! isRunning;
     break;
+  case '1':
+     myCard.toDealCard(millis(), 15.0, new PVector(40,0,0));
   }
   if (key == CODED)
   {
@@ -133,6 +159,8 @@ void keyPressed ()
       zcenter += increment;
     }
   }
+  
+  
   if (key == 'r')
   {
     ycamera = ycamera-5;

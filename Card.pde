@@ -76,7 +76,7 @@ public class Card {
         
     }
     else{
-        verticalSpeed.add( new PVector(0, (timeElapsed)/1000*50, 0));
+        verticalSpeed.add( new PVector(0, (timeElapsed)/1000*5, 0));
     }
     myLocation.add(PVector.mult(horizontalSpeed,(timeElapsed/1000)));
     myLocation.add(PVector.mult(verticalSpeed,(timeElapsed/1000)));
